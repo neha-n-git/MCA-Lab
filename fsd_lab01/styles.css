@@ -1,0 +1,142 @@
+/* dashboard-style.css - Soft Lavender-Beige Theme */
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff; /* soft beige */
+  margin: 0;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #f9f5f9; /* lavender hint */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  position: fixed;
+  width: 240px;
+}
+
+.sidebar img{
+    width: 150px;
+    height: min-content;
+    margin-bottom: 20px;
+}
+
+.sidebar h2 {
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #5a4a42;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 0;
+  color: #5a4a42;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  color: #4c3b4d;
+  background-color: #f4ebe9; /* lavender-beige mix */
+  border-left: 4px solid #776278;
+  padding-left: 16px;
+}
+
+.main-content {
+  margin-left: 260px;
+  padding: 30px;
+}
+
+.dashboard-header {
+  display: flex;
+  height: 150px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 20px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+    url('https://static.vecteezy.com/system/resources/previews/042/370/476/non_2x/subtle-pastel-gradient-blur-soft-peach-background-vector.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.dashboard-header h3 {
+  color: #3d2b1f;
+  font-weight: 600;
+}
+
+.card-box {
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: fff; /* soft beige */
+}
+
+.card-box:nth-child(2) {
+  background-color: #f4e6f7; /* soft lavender */
+}
+.card-box:nth-child(3) {
+  background-color: #eef7f1; /* mint tint */
+}
+.card-box:nth-child(4) {
+  background-color: #fef6e4; /* pastel yellow-beige */
+}
+
+.card-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #7e6a68;
+}
+
+.card-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3d2b1f;
+}
+
+footer {
+  text-align: center;
+  color: #aa95a1;
+  font-size: 14px;
+  margin-top: 40px;
+  padding: 10px;
+  border-top: 1px solid #e6d9ce;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+  }
+
+  .sidebar h2 {
+    text-align: center;
+  }
+
+  .sidebar a {
+    text-align: center;
+  }
+}

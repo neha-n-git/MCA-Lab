@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50">
+    <header class="position-sticky top-0 z-50 bg-white shadow">
+      <nav class="bg-white shadow p-4 text-xl">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+          <!-- Logo -->
+          <img src="./assets/logo.png" alt="logo" class="h-20 w-40" />
+
+          <!-- Desktop Nav -->
+          <div class="hidden sm:flex space-x-6">
+            <a class="hover:text-blue-600" href="./index.html">Home</a>
+            <a class="hover:text-blue-600" href="#">Places</a>
+            <a class="hover:text-blue-600" href="#">Gallery</a>
+            <a class="hover:text-blue-600" href="./index.html#contact"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Mobile Hamburger -->
+          <div class="sm:hidden">
+            <button id="menu-btn">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="sm:hidden hidden mt-4 px-4">
+          <a href="./index.html" class="block py-2 hover:text-blue-300">Home</a>
+          <a href="#" class="block py-2 hover:text-blue-300">Places</a>
+          <a href="#" class="block py-2 hover:text-blue-300">Gallery</a>
+          <a href="./index.html#contact" class="block py-2 hover:text-blue-300"
+            >Contact</a
+          >
+        </div>
+
+        <script>
+          const ham = document.getElementById("menu-btn");
+          const mobileMenu = document.getElementById("mobile-menu");
+
+          ham.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        </script>
+      </nav>
+    </header>
+
+    <main class="py-12 px-6 max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-10 text-blue-400">
+        Our Travel Gallery
+      </h1>
+      <div
+        id="gallery"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      >
+      </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10 mt-10" id="contact">
+      <div
+        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <div>
+          <h2 class="text-2xl font-bold text-blue-400 mb-2">
+            Explore Destinations
+          </h2>
+          <p class="text-sm text-gray-300">
+            Discover new places, cultures, and adventures across the globe with
+            us.
+          </p>
+        </div>
+
+        <div
+          class="flex justify-center md:justify-start items-center space-x-6 mt-4 md:mt-0"
+        >
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="hover:text-blue-300 text-2xl" aria-label="Twitter">
+            <i class="fab fa-twitter-square"></i>
+          </a>
+        </div>
+
+        <div class="flex flex-col items-center md:items-start">
+          <h3 class="text-lg font-semibold mb-2 text-blue-400">Our Location</h3>
+          <div class="flex items-center space-x-2 text-gray-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-red-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zm0 10c-4.418 0-8-3.582-8-8a8 8 0 0116 0c0 4.418-3.582 8-8 8z"
+              />
+            </svg>
+            <span>Mumbai, India</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="text-center text-sm text-gray-400 mt-8 border-t border-gray-700 pt-4"
+      >
+        © 2025 Explore Destinations. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      const accessKey = "bTa-na3VrYke6nmsJEtjfSM1dkZLffhxrQg35SlQy4s"; // 🔐 Replace this with your Unsplash Access Key
+      const gallery = document.getElementById("gallery");
+
+      fetch(
+        `https://api.unsplash.com/search/photos?query=travel&per_page=9&client_id=${accessKey}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          data.results.forEach((photo) => {
+            const div = document.createElement("div");
+            div.className = "relative";
+
+            div.innerHTML = `
+            <img src="${photo.urls.small}" alt="${
+              photo.alt_description || "Travel image"
+            }"
+              class="rounded shadow hover:scale-105 transition duration-300 w-full" />
+            <p class="text-sm text-gray-600 mt-2 text-center">
+              Photo by <a href="${
+                photo.user.links.html
+              }" target="_blank" class="text-blue-500 hover:underline">@${
+              photo.user.username
+            }</a>
+            </p>
+          `;
+
+            gallery.appendChild(div);
+          });
+        })
+        .catch((err) => {
+          gallery.innerHTML = `<p class="text-red-500">Failed to load gallery. Try again later.</p>`;
+          console.error("Error loading Unsplash images:", err);
+        });
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>

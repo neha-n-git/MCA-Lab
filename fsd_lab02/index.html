@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <title>Destination</title>
+  </head>
+  <body>
+    <audio id="bg-audio" autoplay loop>
+      <source src="./assets/relax.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <header class="position-sticky top-0 z-50 bg-white shadow">
+      <nav class="bg-white shadow p-4 text-xl">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+          <!-- Logo -->
+          <img src="./assets/logo.png" alt="logo" class="h-20 w-40" />
+
+          <!-- Desktop Nav -->
+          <div class="hidden sm:flex space-x-6">
+            <a class="hover:text-blue-600" href="#">Home</a>
+            <a class="hover:text-blue-600" href="./places.html">Places</a>
+            <a class="hover:text-blue-600" href="./gallery.html">Gallery</a>
+            <a class="hover:text-blue-600" href="#contact">Contact</a>
+          </div>
+
+          <!-- Mobile Hamburger -->
+          <div class="sm:hidden">
+            <button id="menu-btn">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="sm:hidden hidden mt-4 px-4">
+          <a href="#" class="block py-2 hover:text-blue-300">Home</a>
+          <a href="./places.html" class="block py-2 hover:text-blue-300">Places</a>
+          <a href="./gallery.html" class="block py-2 hover:text-blue-300"
+            >Gallery</a
+          >
+          <a href="#contact" class="block py-2 hover:text-blue-300">Contact</a>
+        </div>
+
+        <!-- Script -->
+        <script>
+          const ham = document.getElementById("menu-btn");
+          const mobileMenu = document.getElementById("mobile-menu");
+
+          ham.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        </script>
+      </nav>
+    </header>
+    <main>
+      <!-- Hero Section -->
+      <section
+        class="bg-cover bg-opacity-70 bg-center h-[90vh] flex items-center justify-center text-white text-center"
+        style="
+          background-image: url('https://blog.air.irctc.co.in/wp-content/uploads/2024/03/Santorini-Greece-scaled.jpg');
+        "
+      >
+        <div class="bg-black bg-opacity-40 p-10 rounded-xl">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            Discover New Destinations
+          </h1>
+          <p class="text-lg md:text-xl mb-6">
+            Adventure awaits beyond the horizon.
+          </p>
+          <a
+            href="#"
+            class="bg-blue-400 hover:bg-orange-300 text-white px-6 py-3 rounded-full text-lg font-semibold transition duration-300"
+          >
+            Explore Now
+          </a>
+        </div>
+      </section>
+
+      <!-- Video Section -->
+      <section class="bg-white py-12 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-blue-400">
+            Travel to Greece!
+          </h2>
+
+          <div class="relative overflow-hidden rounded-lg shadow-lg">
+            <video
+              controls
+              class="w-full h-auto rounded-md"
+              poster="https://source.unsplash.com/1200x600/?landscape"
+            >
+              <source src="./assets/promo.mp4" type="video/mp4" />
+              <track
+                src="./assets/subtitles.vtt"
+                kind="subtitles"
+                srclang="en"
+                label="English"
+                default
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10 mt-10" id="contact">
+      <div
+        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <!-- Section 1: Branding & Description -->
+        <div>
+          <h2 class="text-2xl font-bold text-blue-400 mb-2">
+            Explore Destinations
+          </h2>
+          <p class="text-sm text-gray-300">
+            Discover new places, cultures, and adventures across the globe with
+            us.
+          </p>
+        </div>
+
+        <!-- Section 2: Icons -->
+        <div
+          class="flex justify-center md:justify-start items-center space-x-6 mt-4 md:mt-0"
+        >
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="hover:text-blue-300 text-2xl" aria-label="Twitter">
+            <i class="fab fa-twitter-square"></i>
+          </a>
+        </div>
+
+        <!-- Section 3: Location Info with SVG -->
+        <div class="flex flex-col items-center md:items-start">
+          <h3 class="text-lg font-semibold mb-2 text-blue-400">Our Location</h3>
+          <div class="flex items-center space-x-2 text-gray-300">
+            <!-- SVG Location Pin -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-red-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zm0 10c-4.418 0-8-3.582-8-8a8 8 0 0116 0c0 4.418-3.582 8-8 8z"
+              />
+            </svg>
+            <span>Mumbai, India</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Footer -->
+      <div
+        class="text-center text-sm text-gray-400 mt-8 border-t border-gray-700 pt-4"
+      >
+        © 2025 Explore Destinations. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const audio = document.getElementById("bg-audio");
+
+        // Try to autoplay with muted first (to allow autoplay), then unmute
+        audio.muted = true;
+        audio
+          .play()
+          .then(() => {
+            audio.muted = false; // Unmute after autoplay works
+          })
+          .catch((err) => {
+            console.warn(
+              "Autoplay blocked. User interaction needed to play audio."
+            );
+          });
+      });
+    </script>
+  </body>
+</html>
