@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <title>CoffeeHub</title>
+  </head>
+  <body>
+
+    <header class="position-sticky top-0 z-50 bg-white shadow">
+      <nav class="bg-grey-800 shadow p-4 text-xl">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black"
+              >COFFEE HUB | Contact</span
+            >
+
+          <div class="hidden sm:flex space-x-6">
+            <a class="hover:text-orange-200" href="./index.html"> <i class="fa-solid fa-house"></i> Home</a>
+            <a class="hover:text-orange-200" href="./coffecup.html"><i class="fa-solid fa-mug-saucer"></i>Coffee Cup</a>
+            <a class="hover:text-orange-200" href="#"><i class="fa-solid fa-user"></i>Contact</a>
+          </div>
+
+          <div class="sm:hidden">
+            <button id="menu-btn">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="sm:hidden hidden mt-4 px-4">
+          <a href="./index.html" class="block py-2 hover:text-orange-200"> <i class="fa-solid fa-house"></i>Home</a>
+          <a href="./coffecup.html" class="block py-2 hover:text-orange-200"><i class="fa-solid fa-mug-saucer"></i>Coffee Cup</a>
+          <a href="#" class="block py-2 hover:text-orange-200"><i class="fa-solid fa-user"></i>Contact</a>
+        </div>
+
+        <script>
+          const ham = document.getElementById("menu-btn");
+          const mobileMenu = document.getElementById("mobile-menu");
+
+          ham.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        </script>
+      </nav>
+    </header>
+
+    <main class="min-h-screen">
+      <section class="bg-white py-12 px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-orange-400 mb-6">
+          Find Us
+        </h2>
+        <button
+          id="getloc"
+          class="bg-orange-400 hover:bg-orange-300 text-white px-6 py-3 rounded-full text-lg font-semibold transition duration-300 mb-6"
+        >
+          Find Us
+        </button>
+        <div class="flex justify-center">
+          <iframe
+            id="google-map"
+            src="https://maps.google.co.in?output=embed"
+            width="100%"
+            height="500"
+            class="rounded-lg shadow-md w-full max-w-3xl"
+            frameborder="0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10 mt-10" id="contact">
+      <div
+        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <div>
+          <h2 class="text-2xl font-bold text-orange-400 mb-2">
+            For Coffee Lovers
+          </h2>
+          <p class="text-sm text-gray-300">
+            Find new and innovative recipes for your own special blend.
+          </p>
+        </div>
+
+        <div
+          class="flex justify-center md:justify-start items-center space-x-6 mt-4 md:mt-0"
+        >
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="hover:text-blue-300 text-2xl" aria-label="Twitter">
+            <i class="fab fa-twitter-square"></i>
+          </a>
+        </div>
+
+        <div class="flex flex-col items-center md:items-start">
+          <h3 class="text-lg font-semibold mb-2 text-orange-400">Our Location</h3>
+          <div class="flex items-center space-x-2 text-gray-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-red-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zm0 10c-4.418 0-8-3.582-8-8a8 8 0 0116 0c0 4.418-3.582 8-8 8z"
+              />
+            </svg>
+            <span>Mumbai, India</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="text-center text-sm text-gray-400 mt-8 border-t border-gray-700 pt-4"
+      >
+        © 2025 Explore Destinations. All rights reserved.
+      </div>
+    </footer>
+<script src="./script.js"></script>
+  </body>
+</html>

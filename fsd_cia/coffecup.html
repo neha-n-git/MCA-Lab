@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <title>CoffeeHub | Coffee Cup</title>
+  </head>
+  <body>
+
+    <header class="position-sticky top-0 z-50 bg-white shadow">
+      <nav class="bg-grey-800 shadow p-4 text-xl">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black"
+              >COFFEE HUB</span
+            >
+
+          <div class="hidden sm:flex space-x-6">
+            <a class="hover:text-orange-200" href="./index.html"> <i class="fa-solid fa-house"></i> Home</a>
+            <a class="hover:text-orange-200" href="#"><i class="fa-solid fa-mug-saucer"></i>Coffee Cup</a>
+            <a class="hover:text-orange-200" href="./contact.html"><i class="fa-solid fa-user"></i>Contact</a>
+          </div>
+
+          <div class="sm:hidden">
+            <button id="menu-btn">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="sm:hidden hidden mt-4 px-4">
+          <a href="./index.html" class="block py-2 hover:text-orange-200"> <i class="fa-solid fa-house"></i>Home</a>
+          <a href="#" class="block py-2 hover:text-orange-200"><i class="fa-solid fa-mug-saucer"></i>Coffee Cup</a>
+          <a href="./contact.html" class="block py-2 hover:text-orange-200"><i class="fa-solid fa-user"></i>Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="bg-white py-12 px-4">
+        <div class="max-w-7xl mx-auto p-6">
+            <h1 class="text-4xl font-bold text-center mb-8 text-orange-500">Our Coffee Menu</h1>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div class="flex items-center gap-2 w-full sm:w-2/3">
+                <input
+                id="searchInput"
+                type="text"
+                placeholder="Search by coffee name..."
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300"
+                />
+                <button
+                id="searchBtn"
+                class="px-4 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-300 transition"
+                >
+                Search
+                </button>
+            </div>
+            <div class="w-full sm:w-1/3">
+                <select
+                id="sortSelect"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300"
+                >
+                <option value="default">Sort by</option>
+                <option value="asc">Name: A → Z</option>
+                <option value="desc">Name: Z → A</option>
+                </select>
+            </div>
+            </div>
+
+            <div id="coffeeContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </div>
+
+        <script>
+            let coffeeData = [];
+
+            async function fetchCoffee() {
+            try {
+                const res = await fetch("https://api.sampleapis.com/coffee/hot");
+                const data = await res.json();
+                coffeeData = data.slice(0, 8); 
+                displayCoffees(coffeeData);
+            } catch (err) {
+                console.error("Failed to fetch coffee data", err);
+            }
+            }
+
+            function displayCoffees(data) {
+            const container = document.getElementById("coffeeContainer");
+            container.innerHTML = "";
+
+            data.forEach(coffee => {
+                const ingredientsList = coffee.ingredients?.join(", ") || "N/A";
+                container.innerHTML += `
+                <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <img src="${coffee.image}" alt="${coffee.title}" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                    <h2 class="text-xl font-bold text-orange-500 mb-2">${coffee.title}</h2>
+                    <p class="text-gray-700 text-sm mb-2">${coffee.description || "No description available."}</p>
+                    <p class="text-sm text-gray-600"><strong>Ingredients:</strong> ${ingredientsList}</p>
+                    </div>
+                </div>
+                `;
+            });
+            }
+
+            document.getElementById("searchBtn").addEventListener("click", () => {
+            const term = document.getElementById("searchInput").value.toLowerCase();
+            const filtered = coffeeData.filter(item =>
+                item.title.toLowerCase().includes(term)
+            );
+            displayCoffees(filtered);
+            });
+
+            document.getElementById("sortSelect").addEventListener("change", (e) => {
+            const val = e.target.value;
+            let sorted = [...coffeeData];
+
+            if (val === "asc") {
+                sorted.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (val === "desc") {
+                sorted.sort((a, b) => b.title.localeCompare(a.title));
+            }
+
+            displayCoffees(sorted);
+            });
+
+    
+            fetchCoffee();
+        </script>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10 mt-10" id="contact">
+      <div
+        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <div>
+          <h2 class="text-2xl font-bold text-orange-400 mb-2">
+            For Coffee Lovers
+          </h2>
+          <p class="text-sm text-gray-300">
+            Find new and innovative recipes for your own special blend.
+          </p>
+        </div>
+
+        <div
+          class="flex justify-center md:justify-start items-center space-x-6 mt-4 md:mt-0"
+        >
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a
+            href="#"
+            class="hover:text-blue-300 text-2xl"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="hover:text-blue-300 text-2xl" aria-label="Twitter">
+            <i class="fab fa-twitter-square"></i>
+          </a>
+        </div>
+
+        <div class="flex flex-col items-center md:items-start">
+          <h3 class="text-lg font-semibold mb-2 text-orange-400">Our Location</h3>
+          <div class="flex items-center space-x-2 text-gray-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-red-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zm0 10c-4.418 0-8-3.582-8-8a8 8 0 0116 0c0 4.418-3.582 8-8 8z"
+              />
+            </svg>
+            <span>Mumbai, India</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="text-center text-sm text-gray-400 mt-8 border-t border-gray-700 pt-4"
+      >
+        © 2025 Explore Destinations. All rights reserved.
+      </div>
+    </footer>
+<script src="./script.js">
+
+</script>
+  </body>
+</html>
