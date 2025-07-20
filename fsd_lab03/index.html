@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Room Booking Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{
+        font-family: 'Montserrat', sans-serif;
+    }
+    .selected-option {
+      @apply bg-purple-100 border-purple-500 text-purple-800;
+    }
+  </style>
+</head>
+<body class="bg-white font-[Montserrat]">
+  <div class="h-screen bg-[#f9f5f9] shadow-md p-5 fixed w-60">
+    <img src="./assets/logo.png" alt="Hotel Logo" class="w-[150px] mb-5">
+    <h2 class="font-bold mb-6 text-[#5a4a42] text-lg">Hotel Dashboard</h2>
+    <a href="#" class="block py-3 text-[#5a4a42] font-medium border-l-4 border-transparent hover:bg-[#f4ebe9] hover:border-[#776278] hover:pl-4 active text-[#4c3b4d]">Room Booking</a>
+    </div>
+
+  <div class="ml-[260px] p-8">
+    <header class="flex items-center justify-between h-40 mb-8 p-5 rounded-2xl bg-cover bg-center" style="background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('https://static.vecteezy.com/system/resources/previews/042/370/476/non_2x/subtle-pastel-gradient-blur-soft-peach-background-vector.jpg');">
+      <h3 class="text-[#3d2b1f] font-semibold text-xl">Book a Room</h3>
+    </header>
+
+    <section>
+      <form id="bookingForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="fullName" class="block text-[#5a4a42] font-semibold">Full Name</label>
+          <input type="text" id="fullName" required class="mt-1 w-full border border-[#d9cfcf] rounded-lg p-2 text-[15px] bg-[#fffaf9] focus:border-[#bfa1bd] focus:bg-white outline-none" />
+        </div>
+
+        <div>
+          <label for="email" class="block text-[#5a4a42] font-semibold">Email</label>
+          <input type="email" id="email" required class="mt-1 w-full border border-[#d9cfcf] rounded-lg p-2 text-[15px] bg-[#fffaf9] focus:border-[#bfa1bd] focus:bg-white outline-none" />
+        </div>
+
+        <div>
+          <label for="roomType" class="block text-[#5a4a42] font-semibold">Room Type</label>
+          <select id="roomType" required class="mt-1 w-full border border-[#d9cfcf] rounded-lg p-2 text-[15px] bg-[#fffaf9] focus:border-[#bfa1bd] focus:bg-white outline-none">
+            <option value="" disabled selected>Select room</option>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Deluxe">Deluxe</option>
+          </select>
+        </div>
+
+        <fieldset class="md:col-span-2">
+          <legend class="block text-[#5a4a42] font-semibold mb-2">Preferred Check-in Time</legend>
+          <div class="flex gap-4">
+            <label class="flex items-center gap-2 px-4 py-2 border border-[#ddd0da] rounded-md cursor-pointer radio-label bg-[#f9f5f9] hover:bg-[#f4ebe9]">
+              <input type="radio" name="time" value="Morning" class="hidden">
+              <span>Morning</span>
+            </label>
+            <label class="flex items-center gap-2 px-4 py-2 border border-[#ddd0da] rounded-md cursor-pointer radio-label bg-[#f9f5f9] hover:bg-[#f4ebe9]">
+              <input type="radio" name="time" value="Afternoon" class="hidden">
+              <span>Afternoon</span>
+            </label>
+            <label class="flex items-center gap-2 px-4 py-2 border border-[#ddd0da] rounded-md cursor-pointer radio-label bg-[#f9f5f9] hover:bg-[#f4ebe9]">
+              <input type="radio" name="time" value="Evening" class="hidden">
+              <span>Evening</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="md:col-span-2">
+          <button type="submit" class="bg-[#7c5e79] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#684e64] transition">Submit Booking</button>
+        </div>
+      </form>
+
+      <div id="output" class="mt-8 hidden p-6 rounded-xl border border-[#e0d2cd] bg-[#fff9f8] shadow-md text-[#5a4a42]">
+        <h2 class="text-lg font-bold text-[#7c5e79] mb-3">Booking Details</h2>
+        <p id="displayName" class="mb-1"></p>
+        <p id="displayEmail" class="mb-1"></p>
+        <p id="displayRoomType" class="mb-1"></p>
+        <p id="displayTime" class="mb-1"></p>
+      </div>
+    </section>
+
+    <footer class="text-center text-[#aa95a1] text-sm mt-10 pt-4 border-t border-[#e6d9ce]">
+      &copy; 2025 Lavender Stay Hotels. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const output = document.getElementById('output');
+    const displayName = document.getElementById('displayName');
+    const displayEmail = document.getElementById('displayEmail');
+    const displayRoomType = document.getElementById('displayRoomType');
+    const displayTime = document.getElementById('displayTime');
+
+    const radioLabels = document.querySelectorAll('.radio-label');
+    radioLabels.forEach(label => {
+      label.addEventListener('click', () => {
+        radioLabels.forEach(l => l.classList.remove('selected-option'));
+        label.classList.add('selected-option');
+        label.querySelector('input').checked = true;
+      });
+    });
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.querySelector('#fullName').value;
+      const email = document.querySelector('#email').value;
+      const roomType = document.querySelector('#roomType').value;
+      const time = document.querySelector('input[name="time"]:checked');
+
+      displayName.textContent = `Full Name: ${name}`;
+      displayEmail.textContent = `Email: ${email}`;
+      displayRoomType.textContent = `Room Type: ${roomType}`;
+      displayTime.textContent = `Preferred Time: ${time ? time.value : 'Not selected'}`;
+
+      output.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
