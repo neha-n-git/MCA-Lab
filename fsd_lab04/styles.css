@@ -1,0 +1,24 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bitcount:wght@100..900&display=swap');
+
+    .rating-group {
+        display: inline-flex;
+        flex-direction: row-reverse; 
+    }
+
+    .rating-group > input {
+        display: none; 
+    }
+
+    .rating-group > label {
+        cursor: pointer;
+        width: 30px; 
+        height: 30px;
+        color: #555;
+        font-size: 24px; 
+        line-height: 1; 
+    }
+
+    .rating-group > input:checked ~ label {
+        color: #FFD700; 
+    }
