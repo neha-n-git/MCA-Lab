@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "hotel": "Sunrise Inn",
+    "city": "Tokyo",
+    "roomType": "Deluxe",
+    "price": 9000,
+    "beds": 2,
+    "available": true,
+    "img": "https://picsum.photos/seed/room1/400/250"
+  },
+  {
+    "id": 2,
+    "hotel": "Ocean View",
+    "city": "Sydney",
+    "roomType": "Suite",
+    "price": 15000,
+    "beds": 3,
+    "available": true,
+    "img": "https://picsum.photos/seed/room2/400/250"
+  },
+  {
+    "id": 3,
+    "hotel": "Royal Delhi",
+    "city": "Delhi",
+    "roomType": "Standard",
+    "price": 4000,
+    "beds": 1,
+    "available": false,
+    "img": "https://picsum.photos/seed/room3/400/250"
+  },
+  {
+    "id": 4,
+    "hotel": "Sunrise Inn",
+    "city": "Tokyo",
+    "roomType": "Standard",
+    "price": 6000,
+    "beds": 1,
+    "available": true,
+    "img": "https://picsum.photos/seed/room4/400/250"
+  },
+  {
+    "id": 5,
+    "hotel": "Ocean View",
+    "city": "Sydney",
+    "roomType": "Deluxe",
+    "price": 11000,
+    "beds": 2,
+    "available": false,
+    "img": "https://picsum.photos/seed/room5/400/250"
+  },
+  {
+    "id": 6,
+    "hotel": "Royal Delhi",
+    "city": "Delhi",
+    "roomType": "Suite",
+    "price": 12000,
+    "beds": 2,
+    "available": true,
+    "img": "https://picsum.photos/seed/room6/400/250"
+  }
+]
