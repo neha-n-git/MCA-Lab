@@ -4,7 +4,7 @@ const existingFeedbacks = JSON.parse(localStorage.getItem('all-feedbacks') || '[
 
 
 form.addEventListener('submit',function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
     const formdata= new FormData(form);
     const formobj= Object.fromEntries(formdata.entries())
     console.log(formobj);
@@ -12,7 +12,7 @@ form.addEventListener('submit',function(event) {
     localStorage.setItem('all-feedbacks', JSON.stringify(existingFeedbacks));
     console.log(existingFeedbacks);
     alert('Form submitted successfully!');
-    form.reset(); // Reset the form after submission
+    form.reset(); 
 });
 
 //character count for feedback textarea
@@ -23,7 +23,7 @@ feedbackTA.addEventListener('input', function() {
     charCount.textContent = `Characters: ${count} `;
 });
 
-//Session Storage to display welcome back message
+//session Storage to display welcome back message
 const nameInput = document.getElementById('name');
 const welcomeMessage = document.getElementById('welcome-message');
 
@@ -38,7 +38,7 @@ nameInput.addEventListener('change', () => {
     }
 });
 
-// To show all feedbacks in local storage
+// to show all feedbacks in local storage
 
 function displayAllFeedbacks() {
   const feedbackList = document.getElementById('feedback-list');
