@@ -1,5 +1,6 @@
 {
-  "name": "lab_08",
+  "homepage": "https://neha-n-git.github.io/MCA-Lab/lab_09/",
+  "name": "lab_09",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,7 +8,9 @@
     "server": "node server/server.js",
     "server:dev": "nodemon server/server.js",
     "client": "cd client && npm run dev",
-    "dev": "concurrently \"npm run server:dev\" \"npm run client\""
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +25,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "gh-pages": "^6.3.0",
     "nodemon": "^3.1.0"
   }
 }
